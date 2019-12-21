@@ -13,6 +13,8 @@
 
 Необходимо создать Dockerfile, который бы упаковывал Java-приложение в Docker.
 
+Решение:
+
 1. sudo docker build -t lesson7_phyton .
 2. sudo docker run --rm --name lesson7 -p 5000:5000 lesson7_phyton
 3. Открыть ip:5000
