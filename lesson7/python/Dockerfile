@@ -1,13 +1,13 @@
-FROM ubuntu:18.04 
+FROM ubuntu:14.04 
 
-RUN apt-get update && \
-    apt-get install python-all -y -q && \
-    apt-get install python-pip -y -q
+RUN apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -q python-all python-pip
 
-COPY app /opt/webapp
-WORKDIR /opt/webapp
+COPY app/requirements.txt /tmp/
+RUN pip install -qr /tmp/requirements.txt
 
-RUN pip install -qr requirements.txt
+COPY app /opt/webapp/
+WORKDIR /opt/webapp/
 
 EXPOSE 5000
 CMD ["python", "./app.py"]
