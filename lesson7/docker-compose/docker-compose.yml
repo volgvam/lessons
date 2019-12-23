@@ -6,6 +6,20 @@ services:
                         context: assembly/.
                         dockerfile: Dockerfile
                 volumes:
-                        - ./volumes/assembly:/usr/local/tomcat/webapps
+                        - war-storage:/war-storage
 
+        prod:
+                container_name: prod_lesson7
+                build:
+                        context: prod/.
+                ports:
+                        - "80:8080"
+                depends_on:
+                        - assembly
+                volumes:
+                        - war-storage:/usr/local/tomcat/webapps
+
+
+volumes:
+      war-storage:
 
