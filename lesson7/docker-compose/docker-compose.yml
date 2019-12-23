@@ -6,8 +6,6 @@ services:
                         context: assembly/.
                         dockerfile: Dockerfile
                 volumes:
-                        - data-volume:/usr/local/tomcat/webapps
+                        - ./volumes/assembly:/usr/local/tomcat/webapps
 
 
-volumes:
-        data-volume:
