@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+        assembly:
+                container_name: assembly_lesson7
+                build:
+                        context: assembly/.
+                        dockerfile: Dockerfile
+                volumes:
+                        - data-volume:/usr/local/tomcat/webapps
+
+
+volumes:
+        data-volume:
