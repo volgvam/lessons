@@ -11,6 +11,7 @@
     
   tasks:
   - name: Install many presents
+    when: ansible_os_family=="Debian"
     apt: 
       update_cache: yes
       autoremove: yes
