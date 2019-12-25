@@ -55,24 +55,31 @@
 #    become_user: vadimtv2017
     shell: cd {{ github_src }} && mvn package
     ignore_errors: False
-    notify:
-      - Copy war file to tomcat
-      - Restart tomcat8
+#    notify:
+#      - Copy war file to tomcat (shell)
+#      - Copy war file to tomcat
+#      - Restart tomcat8
 
 
 
 
-  handlers: 
+#  handlers: 
   - name: Copy war file to tomcat
 #    become: yes 
     copy: 
       src: "~/from_git/target/hello-1.0.war"
-      dest: "./1111/hello-1.0.war" 
-      force: yes
+      dest: "./hello-1.01.war" 
+      force: no
 #      owner: root 
 #      group: root 
 #      mode: 0644
+
+  - name: Copy war file to tomcat (shell) 
+    shell:
+      "ls -l ~/from_git/target/"    
+
   - name: Restart tomcat8
+    become: yes
     service: 
       name: tomcat8
       state: restarted
