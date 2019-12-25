@@ -11,12 +11,17 @@
     
   tasks:
   - name: Install many presents
-    apt: name= {{ item }} state=installed
-    with_items:
+    apt: 
+#    apt: name= {{ item }} state=present
+      update_cache: yes
+      autoremove: yes
+      state: latest
+      pkg:
       - git
       - maven
       - default-jdk
-      - tomcat8 
+      - tomcat8
+
 
   - name: Clone Git
     become_user: vadimtv2017
@@ -33,8 +38,8 @@
     ignore_errors: False
     notify:
       - Copy war file to tomcat (shell)
-      - Copy war file to tomcat
-#      - Restart tomcat8
+#      - Copy war file to tomcat
+      - Restart tomcat8
 
 
 
