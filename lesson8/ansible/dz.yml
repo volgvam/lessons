@@ -1,0 +1,80 @@
+---
+- name: Lesson 8
+  hosts: staging_servers_web
+  become_user: vadimtv2017
+  become: yes
+
+  vars:
+    github_url: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+    github_src: ~/from_git
+    tomcat_path: /usr/local/tomcat/webapps
+    
+    
+
+
+  tasks:
+
+  - name: Ensure git is presents
+    apt: 
+      name:  git
+      state: present
+
+
+  - name: Ensure maven is presents
+    apt: 
+      name:  maven
+      state: present
+
+  - name: Ensure default-jdk is presents
+    apt: 
+      name:  default-jdk
+      state: present
+
+  - name: Ensure tomcat8 is presents
+    apt: 
+      name:  tomcat8
+      state: present
+
+  - name: Clone Git
+#    become: yes
+    become_user: vadimtv2017
+    git: 
+      repo: "{{ github_url }}"
+      dest: "{{ github_src }}"
+      clone: yes 
+      update: yes
+#    notify: 
+#      - mavel package
+#      - Copy war file to tomcat
+#      - Restart tomcat8 
+  
+
+
+#  handlers:
+  - name: mavel package 
+#    become_user: vadimtv2017
+    shell: cd {{ github_src }} && mvn package
+    ignore_errors: False
+    notify:
+      - Copy war file to tomcat
+      - Restart tomcat8
+
+
+
+
+  handlers: 
+  - name: Copy war file to tomcat
+#    become: yes 
+    copy: 
+      src: "~/from_git/target/hello-1.0.war"
+      dest: "./1111/hello-1.0.war" 
+      force: yes
+#      owner: root 
+#      group: root 
+#      mode: 0644
+  - name: Restart tomcat8
+    service: 
+      name: tomcat8
+      state: restarted
+
+
