@@ -1,5 +1,6 @@
 ---
 - name: Lesson 8
+  become: yes
   hosts: staging_servers_web
 
 
@@ -10,7 +11,6 @@
     
   tasks:
   - name: Install many presents
-    become: yes
     apt: name= {{ item }} state=installed
     with_items:
       - git
@@ -40,19 +40,16 @@
 
   handlers: 
   - name: Copy war file to tomcat
-    become: yes 
     copy: 
       src: "/home/vadimtv2017/from_git/target/hello-1.0.war"
       dest: "./hello-1.01.war" 
       force: no
 
   - name: Copy war file to tomcat (shell) 
-    become: yes
     shell:
       cmd: cp /home/vadimtv2017/from_git/target/hello-1.0.war /var/lib/tomcat8/webapps/
 
   - name: Restart tomcat8
-    become: yes
     service: 
       name: tomcat8
       state: restarted
