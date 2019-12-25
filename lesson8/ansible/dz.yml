@@ -37,18 +37,20 @@
     ignore_errors: False
     notify:
       - Copy war file to tomcat (shell)
-#      - Copy war file to tomcat
+      - Copy war file to tomcat
       - Restart tomcat8
 
 
 
   handlers: 
+# Этот модуль не работает ((( Вопрос: почему модуль shell работает, а этот модуль не работает?
   - name: Copy war file to tomcat
     copy: 
       src: "/home/vadimtv2017/from_git/target/hello-1.0.war"
       dest: "./hello-1.01.war" 
       force: no
 
+# Просто для теста, что модуль shell работает
   - name: Copy war file to tomcat (shell) 
     shell:
       cmd: cp /home/vadimtv2017/from_git/target/hello-1.0.war /var/lib/tomcat8/webapps/
