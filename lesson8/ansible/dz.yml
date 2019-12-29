@@ -15,7 +15,7 @@
     apt: 
       update_cache: yes
       autoremove: yes
-      state: latest
+      state: 
       pkg:
       - git
       - maven

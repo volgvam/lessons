@@ -1,0 +1,21 @@
+---
+- name: Lesson 8
+  become: yes
+  hosts: staging_servers_web
+
+
+  vars:
+    github_url: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+    github_src: ~/from_git
+    tomcat_path: /usr/local/tomcat/webapps
+    
+  tasks:
+  - name: Install many presents
+    when: ansible_os_family=="Debian"
+    apt: 
+      update_cache: yes
+      autoremove: yes
+      state: latest
+      pkg:
+      - docker.io
+
