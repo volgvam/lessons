@@ -1,0 +1,4 @@
+---
+# defaults file for building_war
+github_url:  https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+github_src:  /tmp/war

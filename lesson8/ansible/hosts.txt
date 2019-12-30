@@ -1,0 +1,6 @@
+[staging_servers_web]
+35.228.88.182    ansible_user=vadimtv2017
+35.228.116.78    ansible_user=vadimtv2017
+
+[staging_servers_bd]
+35.228.38.169    ansible_user=vadimtv2017

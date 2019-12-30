@@ -1,0 +1,9 @@
+---
+# handlers file for building_war
+- name: Copy war file to tomcat
+  copy:
+    src: "{{ github_src }}/target/hello-1.0.war"
+    dest: "/tmp/"
+    force: no
+
+

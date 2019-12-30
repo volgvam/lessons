@@ -1,7 +1,5 @@
 lesson6/start.sh
 *.swp
 volumes
-hosts.txt
-ansible.cfg
 lesson_vs_code.code-workspace
-lesson9/dz.retry
+*.retry

@@ -1,0 +1,21 @@
+---
+# tasks file for prod_war
+- block:
+  - name: Install tomcat8 presents       
+    apt:                              
+      update_cache: yes               
+      autoremove: yes                 
+      state: present                        
+      name:                           
+        - tomcat8                       
+
+  when: ansible_os_family=="Debian" 
+
+
+- name: Copy war file to tomcat
+  copy:
+    remote_src: yes
+    src: "{{ github_src }}/target/hello-1.0.war"
+    dest: "{{ tomcat_path }}"
+  notify:
+    - Restart tomcat8

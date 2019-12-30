@@ -47,6 +47,7 @@
 # Этот модуль не работает ((( Вопрос: почему модуль shell работает, а этот модуль не работает?
   - name: Copy war file to tomcat
     copy: 
+      remote_src: yes
       src: "/home/vadimtv2017/from_git/target/hello-1.0.war"
       dest: "./hello-1.01.war" 
       force: no

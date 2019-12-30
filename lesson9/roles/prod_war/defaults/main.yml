@@ -1,0 +1,3 @@
+---
+# defaults file for prod_war
+tomcat_path: /var/lib/tomcat8/webapps

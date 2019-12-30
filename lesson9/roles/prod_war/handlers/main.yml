@@ -1,0 +1,8 @@
+---
+# handlers file for prod_war
+
+- name: Restart tomcat8 
+  service:
+    name: tomcat8
+    state: restarted
+

@@ -1,0 +1,12 @@
+[staging_servers_web]
+google_instans1   ansible_host=35.228.88.182
+google_instans2   ansible_host=35.228.116.78
+
+[staging_servers_bd]
+google_instans3   ansible_host=35.228.38.169
+
+
+[GOOGLE_INSTANCE:children]
+staging_servers_web
+staging_servers_bd
+

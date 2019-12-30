@@ -1,0 +1,34 @@
+---
+# tasks file for building_war
+
+- block:
+
+  - name: Install many presents
+    apt:
+      update_cache: yes
+      force_apt_get: yes
+      autoremove: yes
+      state: present
+      name:
+      - git
+      - maven
+      - default-jdk
+
+
+  when: ansible_os_family=="Debian"
+
+
+
+- name: Clone Git
+  git:
+    repo: "{{ github_url }}"
+    dest: "{{ github_src }}"
+    clone: yes
+    update: yes
+
+
+
+- name: mavel package
+  shell: cd {{ github_src }} && mvn package
+  ignore_errors: False
+
